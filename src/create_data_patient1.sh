@@ -1,1 +1,20 @@
-../.git/annex/objects/Wp/77/MD5E-s365--7e0cf4ebb9ef99ce57430aaaee4235fc.sh/MD5E-s365--7e0cf4ebb9ef99ce57430aaaee4235fc.sh
+#!/bin/bash
+# create data files for patient 1
+
+# parse inputs
+FILE_DIR=$1
+
+# patient 1 settings
+MIN_RAND=0
+MAX_RAND=1000
+NUM_RANDS=200
+NUM_FILES=8
+
+# create data
+THIS_DIR=$( cd -- "$( dirname -- "$(realpath "${BASH_SOURCE[0]:-$0}")" )" &> /dev/null && pwd )
+$THIS_DIR/create_data.sh \
+    $MIN_RAND \
+    $MAX_RAND \
+    $NUM_RANDS \
+    $NUM_FILES \
+    $FILE_DIR

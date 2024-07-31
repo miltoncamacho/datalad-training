@@ -1,1 +1,12 @@
-.git/annex/objects/j7/5K/MD5E-s250--9b9ff49d3e423f3a7fb2ef25966a63d0.sh/MD5E-s250--9b9ff49d3e423f3a7fb2ef25966a63d0.sh
+#!/bin/bash
+# Delete the parent study dataset
+
+# Initialize paths
+source env-paths
+
+if [ -d "$study_dir" ]; then
+    datalad remove -d $study_dir --reckless kill
+fi
+if [ -d "$sibling_dir" ]; then
+    datalad remove -d $sibling_dir --reckless kill
+fi

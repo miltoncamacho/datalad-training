@@ -1,1 +1,20 @@
-../.git/annex/objects/pw/qx/MD5E-s367--436870171ab31c47c30860247a68d681.sh/MD5E-s367--436870171ab31c47c30860247a68d681.sh
+#!/bin/bash
+# create data files for patient 2
+
+# parse inputs
+FILE_DIR=$1
+
+# patient 2 settings
+MIN_RAND=100
+MAX_RAND=200
+NUM_RANDS=200
+NUM_FILES=10
+
+# create data
+THIS_DIR=$( cd -- "$( dirname -- "$(realpath "${BASH_SOURCE[0]:-$0}")" )" &> /dev/null && pwd )
+$THIS_DIR/create_data.sh \
+    $MIN_RAND \
+    $MAX_RAND \
+    $NUM_RANDS \
+    $NUM_FILES \
+    $FILE_DIR

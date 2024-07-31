@@ -1,1 +1,5 @@
-.git/annex/objects/20/ZV/MD5E-s113--43954be49246e14dd4a3be97669f626d.sh/MD5E-s113--43954be49246e14dd4a3be97669f626d.sh
+#!/bin/bash
+# uncommit the last commit
+# and place committed files into the staging area
+
+git reset --soft HEAD~
