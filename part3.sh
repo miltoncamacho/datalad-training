@@ -72,5 +72,5 @@ datalad save -r -m "fix: made changes to the sample 01 of inputs for patient 1"
 
 # rerun datalad comand
 git log --oneline
-RUN_COMMIT=$(git rev-parse @~2)
+RUN_COMMIT=$(git rev-parse @~1)
 datalad rerun $RUN_COMMIT
