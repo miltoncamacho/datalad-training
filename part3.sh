@@ -44,7 +44,9 @@ datalad create --dataset .. --cfg-proc text2git inputs
 mkdir outputs_multiplication
 
 ##### populate data in datasets #####
-sh $SRC_DIR/create_data_patient1.sh $study_dir/patient_1/inputs 
+cd $study_dir
+sh $SRC_DIR/create_data_patient1.sh $study_dir/patient_1/inputs
+datalad save -m -r "add inputs to patient 1"
 
 # download the image
 datalad containers-add multiply-numbers --call-fmt 'singularity exec -B {{pwd}} {img} {cmd}' --url docker://miltoncamacho/multiply-numbers
