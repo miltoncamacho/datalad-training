@@ -4,7 +4,7 @@
 set -eu -o pipefail
 
 # Initialize paths
-source env-paths
+source env-paths.sh
 
 
 ##### Create datasets ##### #>25
