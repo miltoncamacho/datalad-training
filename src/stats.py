@@ -1,1 +1,1 @@
-../.git/annex/objects/gm/Zz/MD5E-s3048--6f9632d6ac229c1805948129bc59fd26.py/MD5E-s3048--6f9632d6ac229c1805948129bc59fd26.py
+/annex/objects/MD5E-s3048--6f9632d6ac229c1805948129bc59fd26.py
