@@ -1,3 +1,3 @@
 * annex.backend=MD5E
 **/.git* annex.largefiles=nothing
-* annex.largefiles= (not(include=*.pdf) and not(include=*.sh) and not(include=*.json) and not(include=*Dockerfile*) and not(include=*.py) and not(include=*.txt) and largerthan=0)
+* annex.largefiles= (not(include=*.pdf) and not(include=*.sh) and not(include=*.json) and not(include=*Dockerfile*) and not(include=*.py) and not(include=*.pptx) and not(include=*.docx) and not(include=*.txt) and largerthan=0)

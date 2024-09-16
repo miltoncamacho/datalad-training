@@ -51,6 +51,9 @@ datalad save -r -m "add inputs to patient 1"
 # download the image
 datalad containers-add multiply-numbers --call-fmt 'singularity exec -B {{pwd}} {img} {cmd}' --url docker://miltoncamacho/multiply-numbers
 # the --call-fmt allows you to format how the container will be run, in this case, we care about binding the pwd into the container
+# datalad containers-add multiply-numbers --call-fmt 'docker run -v --rm {{pwd}}:/data {img} {cmd}' --url dhub://miltoncamacho/multiply-numbers --update
+# for macs with silicon chips
+# datalad containers-add multiply-numbers --call-fmt 'docker run -v --rm --platform linux/amd64 {{pwd}}:/data {img} {cmd}' --url dhub://miltoncamacho/multiply-numbers --update
 
 # check the containers
 datalad containers-list
