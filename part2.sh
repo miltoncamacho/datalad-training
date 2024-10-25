@@ -65,7 +65,7 @@ datalad get sub-RS025/ses-1/anat/
 datalad status --annex all
 
 # "drop" a file (i.e. delete the file contents to clear up space) #>50
-datalad drop sub-RS025/ses-1/anat/sub-RS025_ses-1_T1w.nii.gz
+datalad drop sub-RS025/ses-1/anat/sub-RS025_ses-1_T1w.nii.gz --reckless kill
 
 # view updated web dataset #>50
 datalad status --annex all
@@ -151,9 +151,9 @@ datalad update --sibling lab_computer --how fetch
 # the dataset is simply made aware of the changes
 
 # view the modified files between the two siblings
-datalad diff --to remotes/lab_computer/main
+datalad diff --to remotes/lab_computer/master
 # view the changes between the two siblings
-git --no-pager diff remotes/lab_computer/main
+git --no-pager diff remotes/lab_computer/master
 
 # merge changes from sibling into dataset
 datalad update --sibling lab_computer --how merge
