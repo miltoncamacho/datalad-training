@@ -1,1 +1,12 @@
-../.git/annex/objects/6P/G2/MD5E-s283--0172ff86f71b0168c62eb9a74b9ce1be.json/MD5E-s283--0172ff86f71b0168c62eb9a74b9ce1be.json
+{
+    "Name": "Brisk Instruction on DataLad (BID)",
+    "Description": "Hands-on training on reproducible data management with DataLad.",
+    "Authors": [
+        "David Deepwell",
+        "Pedro Martinez",
+	"Milton Camacho"
+        ],
+    "Software": [
+        "Python3.11"
+    ]
+}
