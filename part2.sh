@@ -43,20 +43,20 @@ cd $study_dir
 # install an external dataset #>50
 datalad install \
     --dataset . \
-    --source https://github.com/OpenNeuroDatasets/ds004767.git patient_web
+    --source https://github.com/OpenNeuroDatasets/ds005597.git patient_web
 
 # view web dataset with annexed information #>50
 cd patient_web
 datalad status --annex all
 
 # Get a single file #>50
-datalad get sub-00xCNDR01/anat/sub-00xCNDR01_T2w.nii.gz
+datalad get sub-RS025/ses-1/anat/sub-RS025_ses-1_T1w.nii.gz
 
 # view web dataset #>50
 datalad status --annex all
 
 # Get a data directory #>50
-datalad get sub-00xCNDR02
+datalad get sub-RS025/ses-1/anat/
 # Use -r/--recursive option to recursively install subdatasets
 # Be careful when recursively downloading full datasets
 # You may be downloading more data than you expect!
@@ -65,13 +65,13 @@ datalad get sub-00xCNDR02
 datalad status --annex all
 
 # "drop" a file (i.e. delete the file contents to clear up space) #>50
-datalad drop sub-00xCNDR01/anat/sub-00xCNDR01_T2w.nii.gz
+datalad drop sub-RS025/ses-1/anat/sub-RS025_ses-1_T1w.nii.gz
 
 # view updated web dataset #>50
 datalad status --annex all
 
 # Lookup remote data storage locations #>50
-git annex whereis sub-00xCNDR01/anat/sub-00xCNDR01_T2w.nii.gz
+git annex whereis sub-RS025/ses-1/anat/sub-RS025_ses-1_T1w.nii.gz
 # Note that this command does not contact remotes to verify if they still have the file contents.
 # It only reports on the last information that was received from remotes.
 
