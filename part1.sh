@@ -93,7 +93,8 @@ datalad save --message "Add code"
 
 ##### Add a binary file and save recursively ##### #>29
 cd $study_dir
-head -c 1000 /dev/urandom > patient_1/inputs/file.bin
+#The command generates and displays the first 1000 bytes of random data from /dev/urandom
+head -c 1000 /dev/urandom > patient_1/inputs/file.bin 
 datalad save --recursive --message "Add binary file"
 ls -ltrh patient_1/inputs/file.bin
 
