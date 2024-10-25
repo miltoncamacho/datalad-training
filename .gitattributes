@@ -1,3 +1,1 @@
-* annex.backend=MD5E
-**/.git* annex.largefiles=nothing
-* annex.largefiles= (not(include=*.pdf) and not(include=*.sh) and not(include=*.json) and not(include=*Dockerfile*) and not(include=*.py) and not(include=*.pptx) and not(include=*.docx) and not(include=*.txt) and largerthan=0)
+.git/annex/objects/2K/J8/MD5E-s378--322352d14ae4ac967328656b4b7bd34a/MD5E-s378--322352d14ae4ac967328656b4b7bd34a
