@@ -1,1 +1,11 @@
-/annex/objects/SHA256E-s263--e7799c15c06ec6b3dea8f312df6b9f7e751f2c4ca1fa93a68ee78d43c123540d.json
+{
+    "Name": "Brisk Instruction on DataLad (BID)",
+    "Description": "Hands-on training on reproducible data management with DataLad.",
+    "Authors": [
+        "David Deepwell",
+        "Pedro Martinez"
+        ],
+    "Software": [
+        "Python3.11"
+    ]
+}
