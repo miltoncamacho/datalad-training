@@ -128,22 +128,212 @@ Pick a working directory (anywhere you have space):
    mkdir -p ~/work/bids-demo
    cd ~/work/bids-demo
 
-
 Clone a BIDS Dataset with DataLad
 =================================
 
-You need a **dataset URL**. This can be an SSH/HTTPS Git URL, a local path, or an open-data URL.  
-Replace ``<BIDS_DATASET_URL>`` with your dataset:
+For this step you will need to refer to the following tutorial in order to gain access to the BIDS dataset for University of Calgary's CPIP project.
+
+.. _setup_aws:
+
+How to access data from the Canadian Paediatric Imaging Platform
+================================================================
+
+GitLab serves as a catalogue for the Canadian Paediatric Imaging Platform  (CPIP) data. Currently, these data lives inside the University of Calgary’s network, so you will need to follow these instructions to get it.
+
+   1. You will need to log into the General VPN access through FortiClient, contact Perry.radau1@ucalgary.ca or Milton.camachocamach@ucalary.ca if you need help with any of these steps.
+
+To access data from the Canadian Paediatric Imaging Platform you will need to work with two software’s, GitLab and MinIO.
+
+GitLab
+------
+
+GitLab tracks the structure and history of the repositories, or in our case, the study directory hierarchy. The hierarchy of directories inside of GitLab is defined in this order: *Principal Investigator* / *Study Name* / (``bids``, ``sourcedata``, ``qc``, ``derivatives``). *Principal investigator* (PI) will be the investigator who is heading the study. *Study Name* will be the name of the study or studies which are under the PI. Under each independent study you will find 4 different repositories containing study specific data. The *sourcedata* repository will be the one keeping track of all the DICOM files of the study. The *bids* folder will keep track of the BIDS formatted images for the study. The *qc* repository will keep track of the quality control checks for the data of the study, and the *derivatives* repository will be where you can find processing steps for the bids formatted data.
+
+MinIO
+-----
+
+MinIO will serve as the object storage for all the data for the repositories in GitLab. In short GitLab track the file’s history and the structure while MinIO stores all the images and binary objects (all non-text files).
+
+   2.	You can access it by clicking `cpip.ucalgary.ca <https://cpip.ucalgary.ca>`_ or copy/pasting it into your browser Chrome and Mozilla have been tested. You will see following window.
+
+   .. image:: img/landing_page.png
+      :alt: Landing Page CPIP GitLab
+      :width: 2000px
+      :align: center
+
+
+   3.	To log in using your UofC’s credentials, you will need to click in the University of Calgary’s account button and follow the instructions to log in to your account.
+
+   .. image:: img/UofC_acount.png
+      :alt: UofC Account CPIP GitLab
+      :width: 2000px
+      :align: center
+
+   .. image:: img/UofC_sign_in.png
+      :alt: UofC Sign In page CPIP GitLab
+      :width: 2000px
+      :align: center
+
+   
+   4.	If you get an error message saying you do not have access you can email Milton.camachocamach@ucalgary.ca to request access.
+
+   5.	You will arrive to the following page:
+
+   .. image:: img/home_page.png
+      :alt: Home Page CPIP GitLab
+      :width: 2000px
+      :align: center
+
+
+   6. At this point you will need to contact the cpip data manager for Calgary (Milton.camachocamach@ucalgary.ca) so you can request access to the required projects and groups. Very important to let the manager know, along with which studies you are trying to access, otherwise it is possible that you will not have the correct permissions. Please also CC the responsible PI of the study as they will be the ones giving final approval for you access to be granted.
+
+   7.	To clone the data and authenticate access to any repository you will need to create a personal access token by following these instructions:
+
+      a.	Click on your profile icon.
+
+      .. image:: img/profile_icon.png
+         :alt: Profile Icon
+         :width: 2000px
+         :align: center
+
+
+      b.	Click on Preferences
+
+      .. image:: img/profile_preferences.png
+         :alt: Profile Preferences
+         :width: 1000px
+         :align: center
+
+
+      c.	Navigate to the Access Tokens tile and then click on Add new token.
+      
+      .. image:: img/personal_access_token.png
+         :alt: Personal Access Token
+         :width: 2000px
+         :align: center
+
+
+      d.	Name the token however you want, set the date for expiration for little under a year from the current date, and check the following boxes. You can create multiple ones with different permissions, but for the purposes of CPIP it is simpler to have a master access token.
+
+      .. image:: img/pat_options.png
+         :alt: Personal Access Token Options
+         :width: 2000px
+         :align: center
+
+
+      e.	You will need to safely store your personal access token right after creation as you will not be able to access it again. (don’t worry too much you can always create a new one if you lose that one)
+
+      .. image:: img/pat_store.png
+         :alt: Personal Access Token Store
+         :width: 1500px
+         :align: center
+
+
+   8.	Just like we just created a token for GitLab, we will create another token but this time for MinIO. Make sure the CPIP manager knows what you are trying to access. If you already did this, good job. Please continue with the steps.
+   
+      a.	Go to your web browser (firefox or google chrome) and navigate to `cpip.ucalgary.ca:9001 <https://cpip.ucalgary.ca:9001>`_ and you will get to this page and click on UofC OpenID.
+
+      .. image:: img/landing_page_minio.png
+         :alt: Landing Page MinIO
+         :width: 2000px
+         :align: center
+
+      
+      b.	Similarly to what we did for GitLab, you will use your UofC credentials to access the MinIO. If you encounter issues doing this, contact the cpip data manager (Milton.camachocamach@ucalgary.ca).
+
+      c.	Once inside the MinIO console, you will navigate to ``Access Keys``:
+
+      .. image:: img/home_page_minio.png
+         :alt: Home Page MinIO
+         :width: 2000px
+         :align: center
+      
+
+      d.	On the ``top right`` you will click on ``Create access key``:
+
+      .. image:: img/create_access_key_minio.png
+         :alt: Create Access Key MinIO
+         :width: 2000px
+         :align: center
+
+
+      e.	You will fill in the ``access key`` and ``secret key`` or accept the ones autogenerated in place, these will be used to access the data later. You could use your UofC credentials, but this is not advised. Set the name of the access key to whatever you want and ``click on create``. The name will only help you differentiate if you want to create multiple access keys with differential access levels. However, the cpip data manager advised by the CPIP principal investigator will ultimately determine what your access level will be.
+
+      .. image:: img/create_access_key_minio_options.png
+         :alt: Create Access Key MinIO Options
+         :width: 2000px
+         :align: center
+
+
+      f.	Similarly to what was node for GitLab, you will safely store this access key, but don’t worry if you lose it, you can create a new one a remove the previously created one at any moment.
+
+      .. image:: img/create_access_key_minio_store.png
+         :alt: Create Access Key MinIO Store
+         :width: 2000px
+         :align: center
+      
+
+   9.	Once you have created a personal access token for GitLab and the access key and secret key for MinIO you can use it to clone projects locally.
+
+      a.	Click on the ``GitLab icon`` on the ``top left`` part of the screen and navigate to the ``Projects tile``.
+
+      .. image:: img/click_on_gitlab_icon.png
+         :alt: GitLab Icon
+         :width: 2000px
+         :align: center
+
+
+      b. Navigate to the project you are interested in cloning e.g., the ``bids`` project under ``SLBRAY/CPIP/bids`` and click on it. This repository will contain all the bids data.
+
+      .. image:: img/bids_project.png
+         :alt: Bids Project
+         :width: 2000px
+         :align: center
+
+
+      c.	The project page will open, and you can navigate it and click in the ``Code`` button and then copy the URL under the ``Clone with HTTPS``.
+
+      .. image:: img/clone_url.png
+         :alt: Clon Url
+         :width: 2000px
+         :align: center
+
+
+      d.	Open a terminal in Unix based systems or the CMD in windows (not recommended to use windows). Install the following open Git repository https://gitlab.com/milton.camacho/setup-git-aws.git.
+
+      e.	Navigate into the installed repository (the directory where the previous repository was installed) and follow the *README* instructions in the repository. For convenience, I will attach 
+      a screenshot, but the instructions might have changes when you are trying to access the repository.
+
+      .. image:: img/linux_instructions.png
+         :alt: Linux Instructions
+         :width: 2000px
+         :align: center
+
+      .. image:: img/windows_instructions.png
+         :alt: Windows Instructions
+         :width: 2000px
+         :align: center
+      
+
+      f.	Using the same terminal or command window navigate to where you want to clone the bids repository. The commands will vary slightly depending on your operating system.
+
+Now that you have completed the data access request, git configuration, and you have a **dataset URL**, this can be an SSH/HTTPS Git URL (but we will use HTTPS for CPIP as it is the only protocol supported), a local path, or an open-data URL.  
+Replace ``<BIDS_DATASET_URL>`` with your dataset in the following command.:
 
 .. code-block:: bash
 
    datalad clone <BIDS_DATASET_URL> bids-ds
+
+You will be asked to authenticate (``username (same as your UofC ID without the @ucalgary.ca) + personal access token (the one we generated for GitLab)``) for ``GitLab``. Hit enter and you will have installed repository. 
+
+.. code-block:: bash
+
    cd bids-ds
 
 What happened?
 
 - You now have the **directory tree and file names**, but many large files are **annexed** (placeholders).
-- That means the dataset cloned fast and uses little disk space initially.
+- That means the dataset cloned fast and uses little disk space initially which is conbenient for dataset exploration.
 
 Explore structure:
 
@@ -161,42 +351,69 @@ List subdatasets (e.g., derivatives as nested datasets):
 
    datalad subdatasets
 
+If you cannot find what you are looking make sure to check on other branches and repeat the previous exploration.
+
+.. code-block:: bash
+
+   git branch -a
+   git checkout <name of branch> 
+   # e.g. git checkout convert/CPIP10011.2.840.113619.2.25.4.2147483647.1719418303.832
+
 
 Get Only What You Need
 ======================
 
 To actually download file *content*, use ``datalad get``. You can be selective.
 
+datalad automatically will read your MinIO credentials you set up ealrier in the tutorial. You can confirm this by running this in your terminal:
+
+.. code-block:: bash
+
+   echo $AWS_ACCESS_KEY_ID
+   echo $AWS_SECRET_ACCESS_KEY
+
+.. note::
+
+   If you did not set up the MinIO credentials, you can repeat the process :ref:`setup_aws` *section 9 e*.
+   You can also run the following commands in your terminal (replace ``<your_access_key>`` and ``<your_secret_key>`` with the ones you created earlier):
+
+   .. code-block:: bash
+
+      export AWS_ACCESS_KEY_ID=<your_access_key>
+      export AWS_SECRET_ACCESS_KEY=<your_secret_key>
+
 Example 1 — get a single file:
 
 .. code-block:: bash
 
-   datalad get sub-0001/anat/sub-0001_T1w.nii.gz
+   # 0001 is just a place holder, replace with a real subject ID
+   datalad get sub-0001/ses-*/anat/sub-0001_T1w.nii.gz
 
 Example 2 — get all T1w images:
 
 .. code-block:: bash
 
-   datalad get 'sub-*/anat/*T1w.nii.gz'
+   datalad get 'sub-*/ses-*/anat/*T1w.nii.gz'
 
 Example 3 — get BOLD NIfTIs for a task:
 
 .. code-block:: bash
 
-   datalad get 'sub-*/func/*task-rest*_bold.nii.gz'
-   datalad get 'sub-*/func/*task-rest*_bold.json'
+   datalad get 'sub-*/ses-*/func/*task-rest*_bold.nii.gz'
+   datalad get 'sub-*/ses-*/func/*task-rest*_bold.json'
 
 Check where content lives (advanced, optional):
 
 .. code-block:: bash
 
-   git annex whereis sub-0001/func/sub-0001_task-rest_bold.nii.gz
+   # 0001 is just a place holder, replace with a real subject ID
+   git annex whereis sub-0001/ses-*/func/sub-0001_task-rest_bold.nii.gz
 
 Free space later (optional):
 
 .. code-block:: bash
 
-   datalad drop 'sub-*/func/*_bold.nii.gz'  # files can be re-fetched any time
+   datalad drop 'sub-*/ses-*/func/*_bold.nii.gz'  # files can be re-fetched any time
 
 
 (Recommended) Set Up a Python Script for Queries
@@ -302,6 +519,7 @@ List BOLD Files (All or Filtered)
    bold = layout.get(suffix="bold", extension=[".nii", ".nii.gz"])
 
    # BOLD for a particular subject & task
+   # 0003 is just a place holder, replace with a real subject ID
    bold_ses = layout.get(
        subject="0003",
        task="rest",
@@ -338,7 +556,8 @@ Find Events Files and Read Them with pandas
 
    import pandas as pd
 
-   events = layout.get(suffix="events", extension=".tsv", subject="0003", task="rest")
+   # 0003 and 1a are just place holders, replace with a real subject ID
+   events = layout.get(suffix="events", extension=".tsv", subject="0003", session="1a", task="rest")
    for ev in events:
        df = pd.read_csv(ev.path, sep="\t")
        print(ev.path, df.shape, df.columns.tolist())
@@ -369,6 +588,7 @@ Count Runs per Task (Simple Report)
        task = f.entities.get("task", "NA")
        run = f.entities.get("run", "NA")
        sub = f.entities.get("subject", "NA")
+       ses = f.entities.get("session", "NA")
        counts[(sub, task)] += 1
 
    for (sub, task), n in sorted(counts.items()):
@@ -402,21 +622,23 @@ Practical Workflow Tips
 
 Use DataLad **selectively**:
 
+For CPIP the JSON sidecars will be always available locally, so you can always get metadata without downloading large NIfTIs. Even if you are not working with CPIP data, you can still benefit from this approach.
+
 .. code-block:: bash
 
    # Only get JSON sidecars (metadata) for functional runs
-   datalad get 'sub-*/func/*_bold.json'
+   datalad get 'sub-*/ses-*/func/*_bold.json'
 
-   # Only get events TSVs for “stroop” task
-   datalad get 'sub-*/func/*task-stroop*events.tsv'
+   # Only get events TSVs for “rest” task
+   datalad get 'sub-*/ses-*/func/*task-rest*events.tsv'
 
 This is especially helpful for very large datasets.
 
-2) Keep the BIDS dataset read-only
+1) Keep the BIDS dataset read-only
 ----------------------------------
 
 Treat the dataset as **pristine input**. Do your analysis in a separate directory (e.g., ``analysis/``).  
-If you need persistent, reproducible steps, learn ``datalad run`` later—it records the exact command and inputs/outputs.
+If you need persistent, reproducible steps, learn ``datalad run`` later (it records the exact command and inputs/outputs).
 
 3) Speed up PyBIDS indexing (optional)
 --------------------------------------
@@ -456,8 +678,8 @@ Save as ``demo.py`` in ``~/work/bids-demo`` (replace the URL):
    os.chdir(ds)
 
    # --- 2) Get just what we need (metadata + events)
-   subprocess.run(["datalad", "get", "sub-*/func/*_bold.json"], check=False)
-   subprocess.run(["datalad", "get", "sub-*/func/*_events.tsv"], check=False)
+   subprocess.run(["datalad", "get", "sub-*/ses-*/func/*_bold.json"], check=False)
+   subprocess.run(["datalad", "get", "sub-*/ses-*/func/*_events.tsv"], check=False)
 
    # --- 3) PyBIDS queries
    layout = BIDSLayout(".", validate=False)
@@ -501,6 +723,9 @@ Run it:
    # ensure your env is active
    python demo.py
 
+.. note:: 
+   
+   You could replace the ``subprocess.run([...])`` calls with equivalent Python APIs (e.g., ``datalad.api.clone()``, ``datalad.api.get()``) if you prefer but that involves another library to learn (this is recommented for more advanced use cases).
 
 Troubleshooting
 ===============
@@ -554,7 +779,6 @@ Next Steps
      bids-validator .
 
 - Use PyBIDS **BIDS-StatsModels** (advanced) for standardized statistical model specifications.
-
 
 Quick Reference (Cheat Sheet)
 =============================
