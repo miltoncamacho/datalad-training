@@ -1,6 +1,6 @@
 # -- Project information -----------------------------------------------------
 project = "BIDS + DataLad + PyBIDS Tutorial"
-author = "Your Name"
+author = "Milton Camacho"
 release = "1.0"
 
 # -- General configuration ---------------------------------------------------
