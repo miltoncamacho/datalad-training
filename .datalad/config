@@ -3,3 +3,5 @@
 [datalad "containers.multiply-numbers"]
 	image = .datalad/environments/multiply-numbers/image
 	cmdexec = {python} -m datalad_container.adapters.docker run {img} {cmd}
+[annex]
+	largefiles = nothing
