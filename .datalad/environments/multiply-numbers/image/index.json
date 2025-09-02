@@ -1,1 +1,1 @@
-../../../../.git/annex/objects/kw/Fk/MD5E-s428--e245754533c89f125da4ff19ca2c1abc.json/MD5E-s428--e245754533c89f125da4ff19ca2c1abc.json
+{"schemaVersion":2,"mediaType":"application/vnd.oci.image.index.v1+json","manifests":[{"mediaType":"application/vnd.oci.image.manifest.v1+json","digest":"sha256:cbde5bbef28ed68503909a8b6e1684bfca5a814aea4c39fb196b38c187630b4c","size":1208,"annotations":{"io.containerd.image.name":"docker.io/miltoncamacho/multiply-numbers:latest","org.opencontainers.image.ref.name":"latest"},"platform":{"architecture":"amd64","os":"linux"}}]}

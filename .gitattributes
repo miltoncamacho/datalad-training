@@ -1,3 +1,25 @@
+# backend choice
 * annex.backend=MD5E
-**/.git* annex.largefiles=nothing
-* annex.largefiles= (not(include=*.gitattributes) and not(include=*.md) and not(include=*.docx) and not(include=*.bat) and not(include=Dokerfile) and not(include=*.pdf) and not(include=*.sh) and not(include=*.json) and not(include=*Dockerfile*) and not(include=*.py) and not(include=*.pptx) and not(include=*.docx) and not(include=*.txt) and largerthan=0)
+
+# always keep these files in Git (not annex)
+**/.git*          annex.largefiles=nothing
+*.gitattributes   annex.largefiles=nothing
+*.md              annex.largefiles=nothing
+*.docx            annex.largefiles=nothing
+*.bat             annex.largefiles=nothing
+*Dockerfile*      annex.largefiles=nothing
+*.pdf             annex.largefiles=nothing
+*.sh              annex.largefiles=nothing
+*.json            annex.largefiles=nothing
+*.py              annex.largefiles=nothing
+*.pptx            annex.largefiles=nothing
+*.txt             annex.largefiles=nothing
+*.rst             annex.largefiles=nothing
+**/*.rst          annex.largefiles=nothing
+docs/_build/      annex.largefiles=nothing
+docs/_static/     annex.largefiles=nothing
+docs/_templates/  annex.largefiles=nothing
+
+# default rule: everything else to annex if larger than 0 (i.e., everything)
+* annex.largefiles=nothing
+

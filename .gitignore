@@ -1,2 +1,6 @@
 .DS_Store
+docs/_static/
+docs/_builds/
+docs/_templates/
+docs/_build/
 .venv
