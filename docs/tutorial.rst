@@ -152,9 +152,9 @@ GitLab tracks the structure and history of the repositories, or in our case, the
 MinIO
 -----
 
-MinIO will serve as the object storage for all the data for the repositories in GitLab. In short GitLab track the file’s history and the structure while MinIO stores all the images and binary objects (all non-text files).
+MinIO will serve as the object storage for all the data for the repositories in GitLab. In short, GitLab tracks the file’s history and the structure while MinIO stores all the images and binary objects (all non-text files).
 
-   2.	You can access it by clicking `cpip.ucalgary.ca <https://cpip.ucalgary.ca>`_ or copy/pasting it into your browser Chrome and Mozilla have been tested. You will see following window.
+   2.	You can access it by clicking `cpip.ucalgary.ca <https://cpip.ucalgary.ca>`_ or copy/pasting it into your browser (Chrome and Mozilla have been tested). You will see following window.
 
    .. image:: img/landing_page.png
       :alt: Landing Page CPIP GitLab
@@ -175,7 +175,7 @@ MinIO will serve as the object storage for all the data for the repositories in 
       :align: center
 
    
-   4.	If you get an error message saying you do not have access you can email Milton.camachocamach@ucalgary.ca to request access.
+   4.	If you get an error message saying you do not have access, you must email Milton.camachocamach@ucalgary.ca to request access.
 
    5.	You will arrive to the following page:
 
@@ -185,9 +185,9 @@ MinIO will serve as the object storage for all the data for the repositories in 
       :align: center
 
 
-   6. At this point you will need to contact the cpip data manager for Calgary (Milton.camachocamach@ucalgary.ca) so you can request access to the required projects and groups. Very important to let the manager know, along with which studies you are trying to access, otherwise it is possible that you will not have the correct permissions. Please also CC the responsible PI of the study as they will be the ones giving final approval for you access to be granted.
+   6. At this point you will need to contact the cpip data manager for Calgary (Milton.camachocamach@ucalgary.ca) so you can request access to the required projects and groups. It is very important to let the manager know which studies you are trying to access, otherwise it is possible that you will not have the correct permissions. Please also CC the responsible PI of the study as they will be the ones giving final approval for your access to be granted.
 
-   7.	To clone the data and authenticate access to any repository you will need to create a personal access token by following these instructions:
+   7.	To clone the data and authenticate access to any repository you will need to create a personal access token by carefully following these instructions:
 
       a.	Click on your profile icon.
 
@@ -197,7 +197,7 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-      b.	Click on Preferences
+      b.	Click on ``Preferences``
 
       .. image:: img/profile_preferences.png
          :alt: Profile Preferences
@@ -205,7 +205,7 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-      c.	Navigate to the Access Tokens tile and then click on Add new token.
+      c.	Navigate to the Access Tokens tile and then click on ``Add new token``.
       
       .. image:: img/personal_access_token.png
          :alt: Personal Access Token
@@ -213,7 +213,7 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-      d.	Name the token however you want, set the date for expiration for little under a year from the current date, and check the following boxes. You can create multiple ones with different permissions, but for the purposes of CPIP it is simpler to have a master access token.
+      d.	Name the token however you want. Set the date for expiration for little under a year from the current date (GitLab does not support over a year), and check the following boxes. You can create multiple ones with different levels of permission, but for the purposes of CPIP it is simpler to have a master access token.
 
       .. image:: img/pat_options.png
          :alt: Personal Access Token Options
@@ -221,7 +221,7 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-      e.	You will need to safely store your personal access token right after creation as you will not be able to access it again. (don’t worry too much you can always create a new one if you lose that one)
+      e.	You will need to safely store your personal access token right after creation as you will not be able to access it again. (don’t worry too much, you can always create a new one if you lose that one, but always keep it safe)
 
       .. image:: img/pat_store.png
          :alt: Personal Access Token Store
@@ -229,9 +229,9 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-   8.	Just like we just created a token for GitLab, we will create another token but this time for MinIO. Make sure the CPIP manager knows what you are trying to access. If you already did this, good job. Please continue with the steps.
+   8.	Just like we created a token for GitLab, we will create another token but this time for MinIO. Once again, make sure the CPIP manager knows what you are trying to access. If you already did this, good job. Please continue with the steps.
    
-      a.	Go to your web browser (firefox or google chrome) and navigate to `cpip.ucalgary.ca:9001 <https://cpip.ucalgary.ca:9001>`_ and you will get to this page and click on UofC OpenID.
+      a.	Go to your web browser (firefox or google chrome) and navigate to `cpip.ucalgary.ca:9001 <https://cpip.ucalgary.ca:9001>`_ and you will get to this page and you will need to click on ``UofC OpenID``.
 
       .. image:: img/landing_page_minio.png
          :alt: Landing Page MinIO
@@ -265,7 +265,7 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-      f.	Similarly to what was node for GitLab, you will safely store this access key, but don’t worry if you lose it, you can create a new one a remove the previously created one at any moment.
+      f.	Similarly to what was done for GitLab, you will safely store this access key, but don’t worry if you lose it, you can create a new one a remove the previously created one at any moment.
 
       .. image:: img/create_access_key_minio_store.png
          :alt: Create Access Key MinIO Store
@@ -299,10 +299,9 @@ MinIO will serve as the object storage for all the data for the repositories in 
          :align: center
 
 
-      d.	Open a terminal in Unix based systems or the CMD in windows (not recommended to use windows). Install the following open Git repository https://gitlab.com/milton.camacho/setup-git-aws.git.
+      d.	Open a terminal in Unix based systems or the CMD in windows (not recommended to use windows). Install the following open Git repository https://gitlab.com/milton.camacho/setup-git-aws.git. This repository will make it easy for you to set up your AWS credentials (``MinIO ``credentials in our case) in your system.
 
-      e.	Navigate into the installed repository (the directory where the previous repository was installed) and follow the *README* instructions in the repository. For convenience, I will attach 
-      a screenshot, but the instructions might have changes when you are trying to access the repository.
+      e.	Navigate into the installed repository (the directory where the previous repository was installed) and follow the *README* instructions in the repository. For convenience, I will attach a screenshot, but the instructions might have changes when you are trying to access the repository.
 
       .. image:: img/linux_instructions.png
          :alt: Linux Instructions
@@ -318,13 +317,13 @@ MinIO will serve as the object storage for all the data for the repositories in 
       f.	Using the same terminal or command window navigate to where you want to clone the bids repository. The commands will vary slightly depending on your operating system.
 
 Now that you have completed the data access request, git configuration, and you have a **dataset URL**, this can be an SSH/HTTPS Git URL (but we will use HTTPS for CPIP as it is the only protocol supported), a local path, or an open-data URL.  
-Replace ``<BIDS_DATASET_URL>`` with your dataset in the following command.:
+Replace ``<BIDS_DATASET_URL>`` with your dataset's URL in the following command.:
 
 .. code-block:: bash
 
    datalad clone <BIDS_DATASET_URL> bids-ds
 
-You will be asked to authenticate (``username (same as your UofC ID without the @ucalgary.ca) + personal access token (the one we generated for GitLab)``) for ``GitLab``. Hit enter and you will have installed repository. 
+You will be asked to authenticate (**username (same as your UofC ID without the @ucalgary.ca) + personal access token (the one we generated for GitLab)**) for ``GitLab``. Hit enter and you will have installed repository. 
 
 .. code-block:: bash
 
