@@ -8,6 +8,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",  # allows :ref:`Section title` links
     "sphinx.ext.todo",              # .. todo:: support (enable below)
     "sphinx.ext.intersphinx",       # link to external docs (Python)
+    "sphinx_copybutton",      # add copy button to code blocks
 ]
 
 # If you use :ref:`section` across files with identical headings, this helps avoid collisions.
