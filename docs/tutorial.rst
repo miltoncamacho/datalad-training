@@ -734,6 +734,17 @@ Troubleshooting
 
 Install them (see installation section). On Linux you often need ``sudo``.
 
+"get(error): sub-x/ses-x/dwi/sub-x_ses-x_*.nii.gz (file) [transfer already in progress, or unable to take transfer lock]"
+-------------------------------------------------------------------------------------------------------------------------
+
+If you see this error, it means that another process is/was already downloading the same file. I you are trying to download the same file in multiple terminal sessions, wait for the first one to finish. If you accidentally or deliveratly interrupted a download, you will have to first remove the git annex lock files before trying again. You can do this by running the following command in the root of the dataaset:
+
+.. code-block:: bash
+
+   find .git/annex/transfer -type f -maxdepth 3 -delete
+
+Then try again with your `datalad get ...` command.
+
 “datalad: command not found”
 ----------------------------
 
