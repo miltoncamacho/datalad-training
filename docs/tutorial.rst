@@ -301,6 +301,10 @@ MinIO will serve as the object storage for all the data for the repositories in 
 
       d.	Open a terminal in Unix based systems or the CMD in windows (not recommended to use windows). Install the following open Git repository https://gitlab.com/milton.camacho/setup-git-aws.git. This repository will make it easy for you to set up your AWS credentials (``MinIO ``credentials in our case) in your system.
 
+      .. code:: bash
+
+         git clone https://gitlab.com/milton.camacho/setup-git-aws.git
+
       e.	Navigate into the installed repository (the directory where the previous repository was installed) and follow the *README* instructions in the repository. For convenience, I will attach a screenshot, but the instructions might have changes when you are trying to access the repository.
 
       .. image:: img/linux_instructions.png
